@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_invoice_list">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Invoice List Report</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Invoice Number</th>
+                                <th>Customer</th>
+                                <th>Sale Order</th>
+                                <th>Sales Team</th>
+                                <th>Payment Status</th>
+                                <th>Journal</th>
+                                <th>Salesperson</th>
+                                <th>Amount Total</th>
+                                <th>ค้างจ่าย</th>
+                                <th>ยอดชำระแล้ว</th>
+                                <th>ชำระล่าสุด</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="docs" t-as="invoice">
+                                <td>
+                                    <span t-field="invoice.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-if="invoice.invoice_origin">
+                                        <span t-field="invoice.invoice_origin"/>
+                                    </t>
+                                    <t t-else="">
+                                        #ERROR
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.team_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.payment_state"/>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.journal_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.invoice_user_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.amount_total" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/>
+                                </td>
+                                <td>
+                                    <span t-field="invoice.amount_residual" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/>
+                                </td>
+                                <td>
+                                    <span t-esc="invoice.amount_total - invoice.amount_residual" t-options='{"widget": "monetary", "display_currency": invoice.currency_id}'/>
+                                </td>
+                                <td>
+                                    <t t-if="invoice.payment_state != 'not_paid'">
+                                        <span t-field="invoice.payment_ids[-1].date" t-options='{"format": "dd/MM/yyyy"}' t-if="invoice.payment_ids"/>
+                                        <span t-if="not invoice.payment_ids">-</span>
+                                    </t>
+                                    <t t-else="">
+                                        -
+                                    </t>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo> 

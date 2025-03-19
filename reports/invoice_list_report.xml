@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_invoice_list" model="ir.actions.report">
+        <field name="name">Invoice List Report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_cod_report.report_invoice_list</field>
+        <field name="report_file">om_cod_report.report_invoice_list</field>
+        <field name="print_report_name">'Invoice List Report'</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <!-- Server Action for Multi-Print -->
+    <record id="action_print_selected_invoices" model="ir.actions.server">
+        <field name="name">Print Selected COD</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = {
+    'type': 'ir.actions.report',
+    'report_type': 'qweb-pdf',
+    'report_name': 'om_cod_report.report_invoice_list',
+    'report_file': 'om_cod_report.report_invoice_list',
+    'docs': records,
+}
+        </field>
+    </record>
+</odoo> 
