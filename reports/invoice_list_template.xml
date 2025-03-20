@@ -11,6 +11,7 @@
                                 <th>Invoice Number</th>
                                 <th>Customer</th>
                                 <th>Sale Order</th>
+                                <th>Route</th>
                                 <th>Sales Team</th>
                                 <th>Payment Status</th>
                                 <th>Journal</th>
@@ -35,6 +36,14 @@
                                     </t>
                                     <t t-else="">
                                         #ERROR
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-if="invoice.first_route_id">
+                                        <span t-field="invoice.first_route_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        -
                                     </t>
                                 </td>
                                 <td>

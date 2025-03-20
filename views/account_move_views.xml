@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree/List View -->
+    <record id="view_account_move_tree_inherit_route" model="ir.ui.view">
+        <field name="name">account.move.tree.inherit.route</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="first_route_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_account_move_form_inherit_route" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.route</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="first_route_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_account_move_filter_inherit_route" model="ir.ui.view">
+        <field name="name">account.move.select.inherit.route</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_move_filter"/>
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="first_route_id"/>
+                <filter string="Route" name="group_by_route" domain="[]" context="{'group_by':'first_route_id'}"/>
+            </field>
+        </field>
+    </record>
+</odoo> 
