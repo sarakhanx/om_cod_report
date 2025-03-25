@@ -148,6 +148,25 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Remarks Section -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="card rounded shadow-sm">
+                                    <div class="card-header">
+                                        <strong>หมายเหตุ</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div t-if="o.narration" class="text-muted">
+                                            <span t-field="o.narration"/>
+                                        </div>
+                                        <div t-if="not o.narration" class="text-muted font-italic">
+                                            -
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </t>
             </t>
