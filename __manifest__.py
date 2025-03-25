@@ -15,6 +15,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/account_move_views.xml',
+        'reports/account_move_report.xml',
         'reports/invoice_list_report.xml',
         'reports/invoice_list_template.xml',
     ],

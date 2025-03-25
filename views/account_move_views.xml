@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="invoice_date" position="after">
                 <field name="first_route_id" optional="show"/>
+                <field name="journal_id" optional="show"/>
             </field>
         </field>
     </record>
